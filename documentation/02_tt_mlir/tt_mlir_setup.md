@@ -214,7 +214,7 @@ mv $HOME/mdbook $HOME/bin/mdbook
 ## Step 30
 
 ```bash
-export PATH="$HOME/bin:$PATH
+export PATH="$HOME/bin:$PATH"
 ```
 
 ## Step 31
