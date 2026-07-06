@@ -172,71 +172,73 @@ pre-commit install
 ## Step 23
 
 ```bash
-cd $HOME
+cmake --build build -- clang-tidy
 ```
 
 ## Step 24
 
 ```bash
-curl -L https://github.com/rust-lang/mdBook/releases/download/v0.5.3/mdbook-v0.5.3-x86_64-unknown-linux-gnu.tar.gz -o mdbook.tar.gz
+cmake --build build -- clang-tidy-ci
 ```
+
+## Optional Documentation Generation  
 
 ## Step 25
 
 ```bash
-tar xzf mdbook.tar.gz
+cd $HOME
 ```
 
 ## Step 26
 
 ```bash
-mkdir -p $HOME/bin
+curl -L https://github.com/rust-lang/mdBook/releases/download/v0.5.3/mdbook-v0.5.3-x86_64-unknown-linux-gnu.tar.gz -o mdbook.tar.gz
 ```
 
 ## Step 27
 
 ```bash
-mv $HOME/mdbook $HOME/bin/mdbook
+tar xzf mdbook.tar.gz
 ```
 
 ## Step 28
 
 ```bash
-export PATH="$HOME/bin:$PATH
+mkdir -p $HOME/bin
 ```
 
 ## Step 29
 
 ```bash
-cd tt-mlir
+mv $HOME/mdbook $HOME/bin/mdbook
 ```
 
 ## Step 30
 
 ```bash
-source env/activate
+export PATH="$HOME/bin:$PATH
 ```
 
 ## Step 31
 
 ```bash
-cmake --build build -- docs
+cd tt-mlir
 ```
 
 ## Step 32
 
 ```bash
-mdbook serve build/docs
+source env/activate
 ```
 
 ## Step 33
 
 ```bash
-cmake --build build -- clang-tidy
+cmake --build build -- docs
 ```
 
 ## Step 34
 
 ```bash
-cmake --build build -- clang-tidy-ci
+mdbook serve build/docs
 ```
