@@ -123,10 +123,8 @@ cmake --build env/build
 ## Step 17
 
 ```bash
-rm -rf /home/psarenac/tt-mlir/env/build
+rm -rf $HOME/tt-mlir/env/build
 ```
-
-### Replace `/home/psarenac/tt-mlir` with the path to your cloned tt-mlir repo
 
 ## Step 18
 
