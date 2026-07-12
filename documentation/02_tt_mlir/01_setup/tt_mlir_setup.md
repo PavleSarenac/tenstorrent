@@ -2,13 +2,13 @@
 
 ![Wormhole n300](./images/wormhole_n300.png)
 
-## Step 1
+## Next step
 
 ```bash
 sudo apt install -y git clang clang-20 cmake ninja-build pip python3.12-venv
 ```
 
-## Step 2
+## Next step
 
 ```bash
 clang --version
@@ -18,7 +18,7 @@ clang --version
 
 ![clang version output](./images/clang_version_output.png)
 
-## Step 3
+## Next step
 
 ```bash
 clang-20 --version
@@ -28,7 +28,7 @@ clang-20 --version
 
 ![clang-20 version output](./images/clang_20_version_output.png)
 
-## Step 4
+## Next step
 
 ```bash
 cmake --version
@@ -38,7 +38,7 @@ cmake --version
 
 ![cmake version output](./images/cmake_version_output.png)
 
-## Step 5
+## Next step
 
 ```bash
 ninja --version
@@ -48,7 +48,7 @@ ninja --version
 
 ![ninja version output](./images/ninja_version_output.png)
 
-## Step 6
+## Next step
 
 ```bash
 python3.12 --version
@@ -58,25 +58,25 @@ python3.12 --version
 
 ![python 3.12 version output](./images/python_3_12_version_output.png)
 
-## Step 7
+## Next step
 
 ```bash
 deactivate 2>/dev/null
 ```
 
-## Step 8
+## Next step
 
 ```bash
 unset VIRTUAL_ENV PYTHON_ENV_DIR PYTHONPATH
 ```
 
-## Step 9
+## Next step
 
 ```bash
 hash -r
 ```
 
-## Step 10
+## Next step
 
 ```bash
 echo $VIRTUAL_ENV $PYTHON_ENV_DIR $PYTHONPATH
@@ -84,75 +84,91 @@ echo $VIRTUAL_ENV $PYTHON_ENV_DIR $PYTHONPATH
 
 ### Expected output: (empty)
 
-## Step 11
+## Next step
 
 ```bash
 git clone https://github.com/tenstorrent/tt-mlir.git
 ```
 
-## Step 12
+## Next step
 
 ```bash
 cd tt-mlir
 ```
-
-## Step 13
+## Next step
 
 ```bash
 export TTMLIR_TOOLCHAIN_DIR=$HOME/ttmlir-toolchain/
 ```
 
-## Step 14
+## Next step
 
 ```bash
 mkdir -p "${TTMLIR_TOOLCHAIN_DIR}"
 ```
 
-## Step 15
+## Next step
 
 ```bash
 cmake -B env/build env -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
 ```
 
-## Step 16
+## Next step
 
 ```bash
 cmake --build env/build
 ```
 
-## Step 17
+## Next step
 
 ```bash
 rm -rf $HOME/tt-mlir/env/build
 ```
 
-## Step 18
+## Next step
 
 ```bash
 source env/activate
 ```
 
-## Step 19
+## Next step
 
 ```bash
 cmake -G Ninja -B build \
     -DCMAKE_C_COMPILER=clang \
     -DCMAKE_CXX_COMPILER=clang++ \
     -DTTMLIR_ENABLE_RUNTIME=ON \
-    -DTT_RUNTIME_ENABLE_PERF_TRACE=ON \
     -DTTMLIR_ENABLE_OPMODEL=ON \
-    -DTT_RUNTIME_DEBUG=ON \
     -DTTMLIR_ENABLE_STABLEHLO=ON \
+    -DTTMLIR_ENABLE_PYKERNEL=ON \
+    -DTTMLIR_ENABLE_D2M_JIT=ON \
+    -DTTMLIR_ENABLE_TTNN_JIT=ON \
+    -DTTMLIR_ENABLE_RUNTIME_TESTS=ON \
+    -DTTMLIR_ENABLE_OPMODEL_TESTS=ON \
+    -DTT_RUNTIME_ENABLE_PERF_TRACE=ON \
+    -DTT_RUNTIME_DEBUG=ON \
     -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
 ```
 
-## Step 20
+## Next step
 
 ```bash
 cmake --build build
 ```
 
-## Step 21
+## Next step
+
+```bash
+ttrt query --save-artifacts
+```
+
+## Next step
+
+```bash
+export SYSTEM_DESC_PATH=$HOME/tt-mlir/ttrt-artifacts/system_desc.ttsys
+```
+
+## Next step
 
 ```bash
 cmake --build build -- check-ttmlir
@@ -162,19 +178,19 @@ cmake --build build -- check-ttmlir
 
 ![check tt-mlir output](./images/check_tt_mlir_output.png)
 
-## Step 22
+## Next step
 
 ```bash
 pre-commit install
 ```
 
-## Step 23
+## Next step
 
 ```bash
 cmake --build build -- clang-tidy
 ```
 
-## Step 24
+## Next step
 
 ```bash
 cmake --build build -- clang-tidy-ci
@@ -182,61 +198,61 @@ cmake --build build -- clang-tidy-ci
 
 ## Optional Documentation Generation  
 
-## Step 25
+## Next step
 
 ```bash
 cd $HOME
 ```
 
-## Step 26
+## Next step
 
 ```bash
 curl -L https://github.com/rust-lang/mdBook/releases/download/v0.5.3/mdbook-v0.5.3-x86_64-unknown-linux-gnu.tar.gz -o mdbook.tar.gz
 ```
 
-## Step 27
+## Next step
 
 ```bash
 tar xzf mdbook.tar.gz
 ```
 
-## Step 28
+## Next step
 
 ```bash
 mkdir -p $HOME/bin
 ```
 
-## Step 29
+## Next step
 
 ```bash
 mv $HOME/mdbook $HOME/bin/mdbook
 ```
 
-## Step 30
+## Next step
 
 ```bash
 export PATH="$HOME/bin:$PATH"
 ```
 
-## Step 31
+## Next step
 
 ```bash
 cd tt-mlir
 ```
 
-## Step 32
+## Next step
 
 ```bash
 source env/activate
 ```
 
-## Step 33
+## Next step
 
 ```bash
 cmake --build build -- docs
 ```
 
-## Step 34
+## Next step
 
 ```bash
 mdbook serve build/docs
