@@ -2,4 +2,4 @@
 
 ## Before the fix
 
-![PyTorch-TTIR compatibility before the fix](./images/before_the_fix.svg)
+![PyTorch-TTIR compatibility before the fix](./images/before_the_fix.png)
