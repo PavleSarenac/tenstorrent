@@ -10,9 +10,17 @@ Below is the analysis of the compatibility between PyTorch and TTIR slicing befo
 
 ![PyTorch-TTIR compatibility before the fix](./images/before_the_fix_pytorch_vs_ttir.png)
 
+Below is the analysis of the compatibility between PyTorch and TTIR slicing after [this pull request](https://github.com/tenstorrent/tt-mlir/pull/9026):
+
+![PyTorch-TTIR compatibility after the fix](./images/after_the_fix_pytorch_vs_ttir.png)
+
 ## What's changed
 
-TBD
+- `tt-mlir/lib/Dialect/TTIR/IR/TTIROps.cpp`: relaxed `mlir::tt::ttir::SliceStaticOp` verification to match PyTorch behavior in TTIR.
+- `tt-mlir/lib/Conversion/TTIRToTTNN/TTIRToTTNN.cpp`: implemented `SliceStaticOpConversionPattern`to compensate for relaxed `mlir::tt::ttir::SliceStaticOp` verification to ensure that valid slicing is delivered to TTNN as before.
+- `tt-mlir/test/python/golden/ttir_ops/data_movement/test_data_movement.py`: added comprehensive tests to validate all the edge cases regarding the new behavior in the slicing compilation pipeline.
+- `tt-mlir/test/ttmlir/Dialect/TTIR/data_movement/slice/slice_tests_negative.mlir`: removed tests that have become invalid and incorrect after this pull request.
+- `tt-mlir/test/ttmlir/Dialect/TTIR/data_movement/slice/slice_tests_positive.mlir`: added comprehensive tests to validate all the edge cases regarding the new behavior in the slicing compilation pipeline.
 
 ## Proofs of testing
 
