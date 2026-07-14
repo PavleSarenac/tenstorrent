@@ -6,7 +6,13 @@
 
 ```bash
 cd tt-mlir
+```
+
+```bash
 source env/activate
+```
+
+```bash
 pytest test/python/golden/ttir_ops/data_movement/test_data_movement.py::test_slice -v 2>&1 | tee generated/test_slice.log
 ```
 
@@ -16,6 +22,12 @@ pytest test/python/golden/ttir_ops/data_movement/test_data_movement.py::test_sli
 
 ```bash
 cd tt-mlir
+```
+
+```bash
 source env/activate
+```
+
+```bash
 llvm-lit test/ttmlir/Dialect/TTIR/data_movement/slice/slice_tests_negative.mlir -v 2>&1 | tee generated/slice_tests_negative_mlir.log
 ```
